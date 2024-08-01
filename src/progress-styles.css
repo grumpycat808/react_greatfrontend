@@ -1,0 +1,20 @@
+.progress-bar {
+    border: solid grey 1px;
+}
+
+.progress {
+    background-color: blue;
+    animation-duration: 2s;
+    animation-name: expandProgress;
+    animation-fill-mode: forwards;
+}
+
+@keyframes expandProgress {
+    0% {
+      width: 0;
+    }
+  
+    100% {
+      width: 100%;
+    }
+  }
