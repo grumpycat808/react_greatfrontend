@@ -10,7 +10,7 @@ import JobBoard2 from './JobBoard2'
 
 export default function App() {
     const [numOfBars, setNumOfBars] = useState(0)
-    const [progressBars, setProgressBars] = useState([])
+    // const [progressBars, setProgressBars] = useState([])
     const [lastEnded, setLastEnded] = useState(0)
     const [ready, setReady] = useState(false)
     useEffect(() => {
@@ -18,27 +18,24 @@ export default function App() {
     }, [lastEnded])
 
   
-        setTimeout(() => {
-            setReady(true)
-        }, 2000)
 
     const handleAnimationEnd = (randomIndex) => {
         console.log('animation ends: ', randomIndex)
     }
-    let animationsEnded = 0
+
     const handleAdd = () => {
-        animationsEnded++
-        const random = v4()
-        setProgressBars([
-            ...progressBars,
-            <ProgressBars
-                key={random}
+        setNumOfBars(numOfBars + 1)
+      
+    }
+    const progressBars = [];
+    for (let index = 0; index < numOfBars; index++) {
+        progressBars.push(<ProgressBars
+                key={index}
                 animate={true}
                 handleAnimationEnd={() => setLastEnded(progressBars.length + 1)}
                 progress={65}
-                
-            />,
-        ])
+            />)
+         
     }
     return (
         <>
