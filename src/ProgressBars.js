@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './progress-styles.css'
-function ProgressBars({ progress, handleAnimationEnd, animate, ready }) {
+function ProgressBars({ progress, handleAnimationEnd, ready }) {
     console.log('Rendered')
     return (
         <div className="progress-bar">

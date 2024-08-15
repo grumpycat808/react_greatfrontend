@@ -29,9 +29,9 @@ export default function App() {
     }
     const progressBars = [];
     for (let index = 0; index < numOfBars; index++) {
+        const key = v4();
         progressBars.push(<ProgressBars
                 key={index}
-                animate={true}
                 handleAnimationEnd={() => setLastEnded(progressBars.length + 1)}
                 progress={65}
             />)
@@ -39,7 +39,7 @@ export default function App() {
     }
     return (
         <>
-            <button onClick={handleAdd}>Add Progress Bar</button>
+            <button onClick={() =>  setNumOfBars(numOfBars + 1)}>Add Progress Bar</button>
             {progressBars.map((item) => item)}
         </>
     )
