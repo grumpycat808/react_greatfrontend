@@ -10,7 +10,7 @@ function ProgressBars({ progress, handleAnimationEnd, ready }) {
             >
                 <div
                     onAnimationEnd={handleAnimationEnd}
-                    className='progress animate'
+                    className="progress animate"
                 >
                     {progress}
                 </div>
