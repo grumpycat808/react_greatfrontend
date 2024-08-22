@@ -15,16 +15,15 @@
 }
 
 .buttons-container {
-    
-    position: absolute; 
-  left: 0; 
-  right: 0; 
-  bottom: 0;
-  margin-left: auto; 
-  margin-right: auto; 
-  width: 200px; /* Need a specific value to work */
-  display: flex;
-  justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px; /* Need a specific value to work */
+    display: flex;
+    justify-content: center;
 }
 .arrows-container {
     width: 100%;

@@ -29,7 +29,6 @@ function ImageCarousel({ images }) {
                         {buttons.map((item) => item)}
                     </div>
                 </div>
-                
             </div>
         </>
     )
