@@ -5,10 +5,11 @@ import FlightBooker from './FlightBooker'
 import ProgressBars from './ProgressBars'
 import Stopwatch from './Stopwatch'
 import { v4 } from 'uuid'
-import './styles.css'
+// import './styles.css'
 import JobBoard2 from './JobBoard2'
 import UndoCounter from './UndoCounter'
 import DataTable from './DataTable'
+import ImageCarousel from './ImageCarousel'
 
 export default function App() {
     const [numOfBars, setNumOfBars] = useState(0)
@@ -37,6 +38,34 @@ export default function App() {
             />,
         )
     }
+
+    const images = [
+        {
+            src: 'https://picsum.photos/id/600/600/400',
+            alt: 'Forest',
+        },
+        {
+            src: 'https://picsum.photos/id/100/600/400',
+            alt: 'Beach',
+        },
+        {
+            src: 'https://picsum.photos/id/200/600/400',
+            alt: 'Yak',
+        },
+        {
+            src: 'https://picsum.photos/id/300/600/400',
+            alt: 'Hay',
+        },
+        {
+            src: 'https://picsum.photos/id/400/600/400',
+            alt: 'Plants',
+        },
+        {
+            src: 'https://picsum.photos/id/500/600/400',
+            alt: 'Building',
+        },
+    ]
+
     return (
         <>
             {/* <button onClick={() => setNumOfBars(numOfBars + 1)}>
@@ -44,7 +73,7 @@ export default function App() {
             </button>
             {progressBars.map((item) => item)} */}
 
-            <DataTable></DataTable>
+            <ImageCarousel images={images}></ImageCarousel>
         </>
     )
 }
