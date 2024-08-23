@@ -24,20 +24,20 @@ function UsersDatabase(props) {
         setSearchStr(searchString)
     }
     const handleUpdate = () => {
-        const indexOfOG = names.indexOf(selectedName);
-        const newNamesList = [...names];
-        newNamesList[indexOfOG] = `${newFname} ${newLname}`;
+        const indexOfOG = names.indexOf(selectedName)
+        const newNamesList = [...names]
+        newNamesList[indexOfOG] = `${newFname} ${newLname}`
         setNames(newNamesList)
-        setNewFname('');
+        setNewFname('')
         setNewLname('')
     }
 
     const handleCreate = () => {
-        if(selectedName !== '') return;
+        if (selectedName !== '') return
 
-        if(newFname === '' || newLname === '') return;
+        if (newFname === '' || newLname === '') return
         setNames([...names, `${newFname} ${newLname}`])
-        setNewFname('');
+        setNewFname('')
         setNewLname('')
     }
     const handleDelete = () => {
@@ -112,7 +112,16 @@ function UsersDatabase(props) {
                 </form>
             </div>
             <div className="buttons">
-                <button disabled={selectedName !== '' || newFname === '' || newLname === ''} onClick={handleCreate}>Create</button>
+                <button
+                    disabled={
+                        selectedName !== '' ||
+                        newFname === '' ||
+                        newLname === ''
+                    }
+                    onClick={handleCreate}
+                >
+                    Create
+                </button>
                 <button onClick={handleUpdate}>Update</button>
                 <button onClick={handleDelete}>Delete</button>
                 <button onClick={handleCancel}>Cancel</button>
