@@ -13,8 +13,8 @@ function App5(props) {
     return (
         <div className="main">
             <Database
-                data={houses}
-                columns={['id', 'street', 'city', 'state', 'built_year']}
+                data={users}
+                columns={['id', 'name', 'age', 'occupation']}
             ></Database>
             {/* <BirthyearChart></BirthyearChart> */}
             {/* <button onClick={() => setIsOpen(true)}>Show Modal</button> */}
