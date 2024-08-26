@@ -8,18 +8,27 @@ function Database({ columns, data }) {
     const [order, setOrder] = useState(() => {
         const orderObj = {}
 
-        columns.forEach((col) => (orderObj[col] = { ascending: false }))
+        columns.forEach((col) => (orderObj[col.name] = { ascending: false }))
         console.log(orderObj)
         return orderObj
     })
 
+    const [filters, setFilters] = useState({})
+
+    const updateFilters = (filter, includes) => {
+        const newFilters = { ...filters }
+
+        setFilters(newFilters)
+    }
+
+    const updateNumFilters = (filterName, value, boundary) => {}
     const getNumPages = () => {
         return Math.ceil(data.length / numRows)
     }
 
     const spliceRows = () => {
-        const end = numRows * page;
-        const start = end - numRows;
+        const end = numRows * page
+        const start = end - numRows
         return formattedData.slice(start, end)
     }
     const updateSortOrder = (col, ascending) => {
@@ -66,8 +75,14 @@ function Database({ columns, data }) {
                 </select>
             </label>
             <div>
-                <button onClick={() => page > 1 && setPage(page - 1)}>Previous</button>
-                <button onClick={() => page < getNumPages() && setPage(page + 1)}>Next</button>
+                <button onClick={() => page > 1 && setPage(page - 1)}>
+                    Previous
+                </button>
+                <button
+                    onClick={() => page < getNumPages() && setPage(page + 1)}
+                >
+                    Next
+                </button>
                 <span>
                     {page}/{getNumPages()}
                 </span>
@@ -76,13 +91,39 @@ function Database({ columns, data }) {
                 <thead>
                     <tr>
                         {columns.map((col) => (
-                            <th
-                                onClick={() =>
-                                    updateSortOrder(col, !order[col].ascending)
-                                }
-                                key={v4()}
-                            >
-                                {col.toUpperCase()}
+                            <th key={v4()}>
+                                <span
+                                    onClick={() =>
+                                        updateSortOrder(
+                                            col.name,
+                                            !order[col.name].ascending,
+                                        )
+                                    }
+                                >
+                                    {col.name.toUpperCase()}
+                                </span>
+                                <p>
+                                    {col.type === 'string' ? (
+                                        <input
+                                            onChange={(e) =>
+                                                console.log(e.target.value)
+                                            }
+                                            type="text"
+                                            placeholder="Search..."
+                                        ></input>
+                                    ) : (
+                                        <>
+                                            <input
+                                                type="number"
+                                                placeholder="Min"
+                                            ></input>
+                                            <input
+                                                type="number"
+                                                placeholder="Max"
+                                            ></input>
+                                        </>
+                                    )}
+                                </p>
                             </th>
                         ))}
                     </tr>
@@ -93,7 +134,7 @@ function Database({ columns, data }) {
                         spliceRows().map((item) => (
                             <tr key={v4()}>
                                 {columns.map((col) => {
-                                    return <td key={v4()}>{item[col]}</td>
+                                    return <td key={v4()}>{item[col.name]}</td>
                                 })}
                             </tr>
                         ))}
