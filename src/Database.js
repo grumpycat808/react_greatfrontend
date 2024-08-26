@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-import { v4 } from 'uuid'
+import { v4 } from 'uuid';
+import setDefaultFilters from './utils';
 function Database({ columns, data }) {
     const [numRows, setNumRows] = useState(5)
     const [formattedData, setFormattedData] = useState([...data])
@@ -9,19 +10,29 @@ function Database({ columns, data }) {
         const orderObj = {}
 
         columns.forEach((col) => (orderObj[col.name] = { ascending: false }))
-        console.log(orderObj)
+        
         return orderObj
     })
 
-    const [filters, setFilters] = useState({})
-
+    const [filters, setFilters] = useState(setDefaultFilters(columns))
+    
     const updateFilters = (filter, includes) => {
         const newFilters = { ...filters }
-
+        newFilters[filter] = includes
         setFilters(newFilters)
     }
 
-    const updateNumFilters = (filterName, value, boundary) => {}
+    const updateNumFilters = (filterName, value, boundary) => {
+        const newFilters = { ...filters }
+
+        if (boundary === 'max') {
+            newFilters[filterName].max = value
+        } else {
+            newFilters[filterName].min = value
+        }
+        console.log('newFilters', newFilters)
+        setFilters(newFilters)
+    }
     const getNumPages = () => {
         return Math.ceil(data.length / numRows)
     }
@@ -106,8 +117,12 @@ function Database({ columns, data }) {
                                     {col.type === 'string' ? (
                                         <input
                                             onChange={(e) =>
-                                                console.log(e.target.value)
+                                                updateFilters(
+                                                    col.name,
+                                                    e.target.value,
+                                                )
                                             }
+                                            value={filters[col.name]}
                                             type="text"
                                             placeholder="Search..."
                                         ></input>
@@ -116,10 +131,24 @@ function Database({ columns, data }) {
                                             <input
                                                 type="number"
                                                 placeholder="Min"
+                                                onChange={(e) =>
+                                                    updateNumFilters(
+                                                        col.name,
+                                                        e.target.value,
+                                                        'min',
+                                                    )
+                                                }
                                             ></input>
                                             <input
                                                 type="number"
                                                 placeholder="Max"
+                                                onChange={(e) =>
+                                                    updateNumFilters(
+                                                        col.name,
+                                                        e.target.value,
+                                                        'max',
+                                                    )
+                                                }
                                             ></input>
                                         </>
                                     )}
