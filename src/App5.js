@@ -6,6 +6,7 @@ import DataTable from './DataTable'
 import Database from './Database'
 import users from './users.json'
 import houses from './houses.json'
+import { v4 } from 'uuid'
 function App5(props) {
     const [isOpen, setIsOpen] = useState(false)
     const content =
@@ -15,10 +16,10 @@ function App5(props) {
             <Database
                 data={users}
                 columns={[
-                    { name: 'id', type: 'string' },
-                    { name: 'name', type: 'string' },
-                    { name: 'age', type: 'number' },
-                    { name: 'occupation', type: 'string' },
+                    { name: 'id', type: 'string', key: v4() },
+                    { name: 'name', type: 'string', key: v4() },
+                    { name: 'age', type: 'number', key: v4() },
+                    { name: 'occupation', type: 'string', key: v4() },
                 ]}
             ></Database>
             {/* <BirthyearChart></BirthyearChart> */}

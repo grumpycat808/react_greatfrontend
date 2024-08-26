@@ -1,24 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { v4 } from 'uuid';
-import setDefaultFilters from './utils';
+import { v4 } from 'uuid'
+import setDefaultFilters from './utils'
 function Database({ columns, data }) {
     const [numRows, setNumRows] = useState(5)
     const [formattedData, setFormattedData] = useState([...data])
     const [page, setPage] = useState(1)
+    const [filters, setFilters] = useState(setDefaultFilters(columns))
     const [order, setOrder] = useState(() => {
         const orderObj = {}
 
         columns.forEach((col) => (orderObj[col.name] = { ascending: false }))
-        
+
         return orderObj
     })
 
-    const [filters, setFilters] = useState(setDefaultFilters(columns))
-    
+    useEffect(() => {
+        console.log('filters changed', filters)
+    }, [filters])
+
+    const filterDataRows = () => {
+        let dataCopy = [...formattedData]
+        for (const key in filters) {
+            if (Object.prototype.hasOwnProperty.call(filters, key)) {
+                const element = filters[key]
+            }
+        }
+    }
     const updateFilters = (filter, includes) => {
         const newFilters = { ...filters }
-        newFilters[filter] = includes
+        newFilters[filter] = (data) => data.includes(includes)
+        newFilters[filter].value = includes
+        filterDataRows()
         setFilters(newFilters)
     }
 
@@ -26,9 +39,17 @@ function Database({ columns, data }) {
         const newFilters = { ...filters }
 
         if (boundary === 'max') {
-            newFilters[filterName].max = value
+            newFilters[filterName] = [
+                ...newFilters[filterName],
+                (data) => data <= value,
+            ]
+            newFilters[filterName] = {...newFilters[filterName],  min: newFilters[filterName].min, max: value }
         } else {
-            newFilters[filterName].min = value
+            newFilters[filterName] = [
+                ...newFilters[filterName],
+                (data) => data >= value,
+            ]
+            newFilters[filterName] = {...newFilters[filterName], max: newFilters[filterName].max, min: value }
         }
         console.log('newFilters', newFilters)
         setFilters(newFilters)
@@ -101,8 +122,8 @@ function Database({ columns, data }) {
             <table>
                 <thead>
                     <tr>
-                        {columns.map((col) => (
-                            <th key={v4()}>
+                        {columns.map((col, index) => (
+                            <th key={index}>
                                 <span
                                     onClick={() =>
                                         updateSortOrder(
@@ -122,7 +143,7 @@ function Database({ columns, data }) {
                                                     e.target.value,
                                                 )
                                             }
-                                            value={filters[col.name]}
+                                            value={filters[col.name].value}
                                             type="text"
                                             placeholder="Search..."
                                         ></input>
