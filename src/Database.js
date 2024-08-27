@@ -29,7 +29,7 @@ function Database({ columns, data }) {
     }
     const updateFilters = (filter, includes) => {
         const newFilters = { ...filters }
-        newFilters[filter] = (data) => data.includes(includes)
+        newFilters[filter].filters = [(data) => data.includes(includes)]
         newFilters[filter].value = includes
         filterDataRows()
         setFilters(newFilters)
@@ -39,18 +39,25 @@ function Database({ columns, data }) {
         const newFilters = { ...filters }
 
         if (boundary === 'max') {
-            newFilters[filterName] = [
+            newFilters[filterName] = {
                 ...newFilters[filterName],
-                (data) => data <= value,
-            ]
-            newFilters[filterName] = {...newFilters[filterName],  min: newFilters[filterName].min, max: value }
+                max: value,
+                filters: [
+                    ...newFilters[filterName].filters,
+                    (data) => data <= value,
+                ],
+            }
         } else {
-            newFilters[filterName] = [
+            newFilters[filterName] = {
                 ...newFilters[filterName],
-                (data) => data >= value,
-            ]
-            newFilters[filterName] = {...newFilters[filterName], max: newFilters[filterName].max, min: value }
+                min: value,
+                filters: [
+                    ...newFilters[filterName].filters,
+                    (data) => data >= value,
+                ],
+            }
         }
+
         console.log('newFilters', newFilters)
         setFilters(newFilters)
     }

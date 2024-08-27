@@ -2,16 +2,23 @@ const setDefaultFilters = (columnsArr) => {
     const returnObj = {}
 
     columnsArr.forEach(({ name, type }) => {
+        let filterObj;
         if (type === 'number') {
-            const filterObj = {};
-            filterObj.filters = [];
-            filterObj.min = null;
-            filterObj.max = null;
-            returnObj[name] = filterObj;
+             filterObj = {
+                filters: [],
+                min: null,
+                max: null,
+            }
+
+            
         } else {
-            returnObj[name] = () => {}
-            returnObj[name].value = ''
+             filterObj = {
+                filters:  [() => {}],
+                value: ''
+            }
+            
         }
+        returnObj[name] = filterObj
     })
 
     return returnObj
