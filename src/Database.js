@@ -7,6 +7,7 @@ function Database({ columns, data }) {
     const [formattedData, setFormattedData] = useState([...data])
     const [page, setPage] = useState(1)
     const [filters, setFilters] = useState(setDefaultFilters(columns))
+    const [currentFilter, setCurrentFilter] = useState('')
     const [order, setOrder] = useState(() => {
         const orderObj = {}
 
@@ -15,23 +16,30 @@ function Database({ columns, data }) {
         return orderObj
     })
 
-    useEffect(() => {
-        console.log('filters changed', filters)
-    }, [filters])
+    const filterDataRows = (column) => {
+        let copyOfData = [...formattedData]
+        let columnData = columns.find((item) => item.name === column)
 
-    const filterDataRows = () => {
-        let dataCopy = [...formattedData]
-        for (const key in filters) {
-            if (Object.prototype.hasOwnProperty.call(filters, key)) {
-                const element = filters[key]
-            }
+        if (!columnData) return
+        if (columnData.type === 'number') {
+        } else {
+            const value = filters[column].value
+            copyOfData = copyOfData.filter((data) =>
+                data[column].includes(value),
+            )
         }
+        setFormattedData(copyOfData)
     }
+    useEffect(() => {
+        console.log('currentFilter', currentFilter)
+        filterDataRows(currentFilter)
+    }, [filters, currentFilter])
+
     const updateFilters = (filter, includes) => {
         const newFilters = { ...filters }
         newFilters[filter].filters = [(data) => data.includes(includes)]
         newFilters[filter].value = includes
-        filterDataRows()
+        setCurrentFilter(filter)
         setFilters(newFilters)
     }
 
@@ -58,7 +66,8 @@ function Database({ columns, data }) {
             }
         }
 
-        console.log('newFilters', newFilters)
+        console.log('newFilters', filterName)
+        setCurrentFilter(filterName)
         setFilters(newFilters)
     }
     const getNumPages = () => {
