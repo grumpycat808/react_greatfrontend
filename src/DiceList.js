@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 function DiceList(props) {
-    return (
-        <div>
-            
-        </div>
-    );
+    return <div></div>
 }
 
-export default DiceList;
+export default DiceList
