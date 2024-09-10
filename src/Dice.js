@@ -9,7 +9,6 @@ const numberMap = {
     6: [1, 3, 4, 6, 7, 9],
 }
 function Dice({ number }) {
-
     const [pips, setPips] = useState(numberMap[number])
     useEffect(() => {
         setPips(numberMap[number])
@@ -23,11 +22,9 @@ function Dice({ number }) {
         for (let column = 0; column < 3; column++) {
             counter++
             pipArray[row][column] = pips.includes(counter) ? (
-                <div className="active" key={counter}>
-                </div>
+                <div className="active" key={counter}></div>
             ) : (
-                <div className="hidden" key={counter}>
-                </div>
+                <div className="hidden" key={counter}></div>
             )
         }
     }

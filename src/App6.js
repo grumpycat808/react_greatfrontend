@@ -7,27 +7,29 @@ function App6(props) {
         [2, 3, 4],
     ]
     function getRandomArbitrary() {
-        return Math.round(Math.random() * (6 - 1) + 1);
-      }
+        return Math.round(Math.random() * (6 - 1) + 1)
+    }
 
-      console.log(getRandomArbitrary())
+    console.log(getRandomArbitrary())
 
-    const [number, setNumber] = useState(0);
-    const [dice, setDice] = useState([]);
+    const [number, setNumber] = useState(0)
+    const [dice, setDice] = useState([])
     const createDiceArr = () => {
-        const arr = [];
+        const arr = []
         for (let index = 0; index < number; index++) {
-            
             arr.push(<Dice number={getRandomArbitrary()}></Dice>)
         }
         setDice(arr)
     }
     return (
         <div className="main">
-            <input type='number' value={number} onChange={(e) => setNumber(e.target.value)}></input>
+            <input
+                type="number"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+            ></input>
             <button onClick={() => createDiceArr()}>Roll</button>
-            {dice.map(die => die)}
-
+            {dice.map((die) => die)}
         </div>
     )
 }
