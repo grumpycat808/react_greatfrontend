@@ -1,10 +1,11 @@
 import React from 'react'
 import DigitalClock from './DigitalClock'
+import MortgageCalculator from './MortgageCalculator'
 
 function App7(props) {
     return (
         <div>
-            <DigitalClock></DigitalClock>
+            <MortgageCalculator></MortgageCalculator>
         </div>
     )
 }

@@ -1,3 +1,13 @@
+form {
+    font-size: 16px;
+}
 .errors {
     color: red;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
