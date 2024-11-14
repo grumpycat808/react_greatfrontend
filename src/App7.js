@@ -4,10 +4,11 @@ import MortgageCalculator from './MortgageCalculator'
 import FileExplorer from './FileExplorer'
 import NestedCheckboxes from './NestedCheckboxes'
 import { fileData } from './fileData'
+import TicTacToe from './TicTacToe'
 function App7(props) {
     return (
         <div>
-            <NestedCheckboxes data={fileData}></NestedCheckboxes>
+            <TicTacToe></TicTacToe>
         </div>
     )
 }

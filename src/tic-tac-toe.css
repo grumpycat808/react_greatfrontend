@@ -1,0 +1,14 @@
+.board {
+    display: flex;
+}
+
+.square {
+    height: 50px;
+    width: 50px;
+    border: solid black 1px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 2rem;
+}

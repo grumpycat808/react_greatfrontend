@@ -9,83 +9,93 @@ function NestedCheckboxes({ data }) {
     const handleCheck = (id) => {
         let newSelected = [...selected]
         let item = findItemById(data, id)
-        let children = [];
+        let children = []
         if (item && item.hasOwnProperty('children')) {
-            children = getChildren(item.children);
+            children = getChildren(item)
         }
-        if(selected.includes(id)) {
+        if (selected.includes(id)) {
             //handle unselect
-          
-            newSelected = newSelected.filter((item) => item !== id && !children.includes(item))
+
+            newSelected = newSelected.filter(
+                (item) => item !== id && !children.includes(item),
+            )
         } else {
             //handle select
-            newSelected.push(id);
+            newSelected.push(id)
             newSelected = [...newSelected, ...children]
-            console.log("getParent(id)", getParent(id))
-            
         }
-        
-        setSelected(newSelected)
-        const parentId = getParent(id);
-            if(id !== parentId) {
-                //Check if we need to select parent
-                if(allChildrenSelected(parentId)) {
-                    newSelected.push(parentId.id);
-                    console.log("newSelected", newSelected)
 
-                    setSelected(newSelected)
-                }
+        setSelected(newSelected)
+        const parentId = getParent(id)
+
+        if (id !== parentId) {
+            console.log('parentId', parentId)
+            //Check if we need to select parent
+            if (allChildrenSelected(parentId)) {
+                newSelected.push(parentId.id)
+                setSelected(newSelected)
             }
+        }
     }
     const allChildrenSelected = (id) => {
-        let children = getChildren([id]);
-        let allSelected = true;
+        //Create ancestry stack?
+        let children = getChildren(id)
+        console.log('children', children)
+        children = children.filter(
+            (child) => !selected.includes(child) && child !== id.id,
+        )
 
-        console.log('id', id);
-        children = children.filter((child) => !selected.includes(child) && child !== id.id)
-        console.log('children', children);
-        return children.length === 0;
+        return children.length === 0
     }
     const getParent = (id) => {
         return data.find((item) => {
-            const children = getChildren([item]);
-            console.log('children', children);
-            console.log('id', id);
-            return children.includes(id);
+            const children = getChildren(item)
+            return children.includes(id)
         })
-        
     }
     const findItemById = (dataArray, id) => {
-        let returnItem = null;
+        let returnItem = null
 
         const recursiveFind = (array, id) => {
             // debugger
             for (let index = 0; index < array.length; index++) {
                 const item = array[index]
                 if (item.id === id) {
-                    returnItem = item;
-                    break;
-                };
+                    returnItem = item
+                    break
+                }
                 if (item.hasOwnProperty('children')) {
-                     recursiveFind(item.children, id)
+                    recursiveFind(item.children, id)
                 }
             }
         }
-        recursiveFind(dataArray, id);
-        return returnItem;
+        recursiveFind(dataArray, id)
+        return returnItem
     }
 
-    const getChildren = (itemsArray, list = []) => {
-        
-        itemsArray.forEach((cbItem) => {
-            if (cbItem.hasOwnProperty('children')) {
-                list.push(cbItem.id)
-                getChildren(cbItem.children, list)
+    const getChildren = (item) => {
+        let children = []
+
+        const recursiveSearch = (itemObj) => {
+            if (itemObj.hasOwnProperty('children')) {
+                children.push(itemObj.id)
+                itemObj.children.forEach((child) => recursiveSearch(child))
             } else {
-                list.push(cbItem.id)
+                children.push(itemObj.id)
             }
-        })
-        return list;
+        }
+        recursiveSearch(item)
+        children = children.filter((child) => child !== item.id)
+        return children
+        // itemsArray.forEach((cbItem) => {
+        //     if (cbItem.hasOwnProperty('children')) {
+        //         list.push(cbItem.id)
+        //         getChildren(cbItem.children, list)
+        //     } else {
+        //         list.push(cbItem.id)
+        //     }
+        // })
+        // return list;
     }
     const recursiveList = (data) => {
         return data.map((item, index) => {
