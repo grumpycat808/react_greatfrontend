@@ -5,18 +5,21 @@ function TicTacToe(props) {
     const row = []
     const initialState = [
         ['', '', ''],
-        ['', 'X', ''],
-        ['', '', 'O'],
+        ['', '', ''],
+        ['', '', ''],
     ]
-
+    const [action, setAction] = useState('X');
     const [boardState, setBoardState] = useState(initialState)
     const handleClick = (row, column) => {
-        console.log('row',row)
-        console.log('column', column)
+        const copy = structuredClone(boardState);
+        
+        copy[row][column] = action;
+        setAction(action === 'X' ? 'O' : 'X');
+        setBoardState(copy);
     }
     return (
         <div className="board">
-            {initialState.map((row, rowIndex) => {
+            {boardState.map((row, rowIndex) => {
                 return (
                     <div key={rowIndex} className="row">
                         {row.map((item, index) => {
