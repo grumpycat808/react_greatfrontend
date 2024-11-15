@@ -1,0 +1,11 @@
+.board {
+    display: flex;
+    max-width: 210px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.square {
+    width: 50px;
+    border: solid black 1px;
+}

@@ -5,10 +5,11 @@ import FileExplorer from './FileExplorer'
 import NestedCheckboxes from './NestedCheckboxes'
 import { fileData } from './fileData'
 import TicTacToe from './TicTacToe'
+import WhackAMole from './WhackAMole'
 function App7(props) {
     return (
         <div>
-            <TicTacToe></TicTacToe>
+            <WhackAMole></WhackAMole>
         </div>
     )
 }
