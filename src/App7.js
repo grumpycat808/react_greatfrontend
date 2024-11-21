@@ -6,10 +6,11 @@ import NestedCheckboxes from './NestedCheckboxes'
 import { fileData } from './fileData'
 import TicTacToe from './TicTacToe'
 import WhackAMole from './WhackAMole'
+import Histogram from './Histogram'
 function App7(props) {
     return (
         <div>
-            <WhackAMole></WhackAMole>
+            <Histogram></Histogram>
         </div>
     )
 }
