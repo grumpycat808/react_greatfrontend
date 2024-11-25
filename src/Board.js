@@ -21,15 +21,15 @@ function Board({ emojis }) {
         console.log('selected', selected)
 
         if (selected.length === 2) {
-            console.log(board[selected[0]].em);
-            console.log(board[selected[1]].em);
-            console.log('board', board);
+            console.log(board[selected[0]].em)
+            console.log(board[selected[1]].em)
+            console.log('board', board)
             if (board[selected[0]].em !== board[selected[1]].em) {
                 setTimeout(() => {
                     const copy = structuredClone(board)
                     copy[selected[0]].state = 'hidden'
                     copy[selected[1]].state = 'hidden'
-                    setBoard(copy);
+                    setBoard(copy)
                     setSelected([])
                 }, 1000)
             } else {
@@ -38,11 +38,11 @@ function Board({ emojis }) {
         }
     }, [selected])
     const handleClick = (index) => {
-        if (selected.length >= 2) return;
-        if(board.find((item) => item.index === index).state !== 'hidden') {
-            console.log("Already selected")
+        if (selected.length >= 2) return
+        if (board.find((item) => item.index === index).state !== 'hidden') {
+            console.log('Already selected')
             return
-        };
+        }
         setSelected([...selected, index])
 
         const copy = structuredClone(board)
