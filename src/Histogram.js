@@ -23,14 +23,13 @@ function Histogram() {
         const max = Math.round(Math.max(...values) / 10) * 10
 
         for (let index = 10; index <= max; index = index + 10) {
-           
             yAxis.push(index)
         }
 
         if (Math.max(...values) > max) {
             yAxis.push(max + 10)
         }
-        console.log("yAxis", yAxis)
+        console.log('yAxis', yAxis)
         return yAxis
     }
     const tabulateData = (numArr) => {
@@ -73,24 +72,35 @@ function Histogram() {
     }, [tabulated])
 
     const getHeightOfBar = (value) => {
+        const max = (yAxis.length - 1) * 50
+        const percentage = value / Math.max(...yAxis)
 
-        const max =  (yAxis.length - 1) * 50 ;
-        const percentage = value/Math.max(...yAxis);
-        
-        return percentage * max + "px";
+        return percentage * max + 'px'
     }
     return (
         <div className="wrapper">
-            <div className="y-axis" style={{height: (yAxis.length - 1) * 50 + "px"}}>
+            <div
+                className="y-axis"
+                style={{ height: (yAxis.length - 1) * 50 + 'px' }}
+            >
                 {yAxis.map((item) => (
                     <span>{item}</span>
                 ))}
             </div>
             <div className="container">
-                <div className="table" style={{height: (yAxis.length - 1) * 50 + "px"}}>
+                <div
+                    className="table"
+                    style={{ height: (yAxis.length - 1) * 50 + 'px' }}
+                >
                     <div className="values">
                         {Object.values(tabulated).map((value, i) => (
-                            <span className='values' style={{height:  getHeightOfBar(value)}} key={i}>{value}</span>
+                            <span
+                                className="values"
+                                style={{ height: getHeightOfBar(value) }}
+                                key={i}
+                            >
+                                {value}
+                            </span>
                         ))}
                     </div>
                 </div>
