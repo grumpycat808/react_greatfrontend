@@ -4,11 +4,12 @@ import './index.css'
 
 import reportWebVitals from './reportWebVitals'
 import App7 from './App7'
+import App8 from './App8'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
-        <App7 />
+        <App8 />
     </React.StrictMode>,
 )
 

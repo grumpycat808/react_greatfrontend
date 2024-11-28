@@ -9,7 +9,7 @@ import WhackAMole from './WhackAMole'
 import Histogram from './Histogram'
 function App7(props) {
     return (
-        <div>
+        <div style={{paddingTop: "50px"}}>
             <Histogram></Histogram>
         </div>
     )

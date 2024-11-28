@@ -1,0 +1,51 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.y-axis {
+    
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.y-axis span {
+    
+}
+.table {
+    border-bottom: solid black 1px;
+    border-left: solid black 1px;
+    border-top: solid black 1px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+    align-items: flex-end;
+}
+
+span.x {
+    margin-right: 20px;
+    display: inline-block;
+    width: 36px;
+  
+}
+
+span.x:first-of-type {
+    margin-left: 20px;
+}
+
+div.values {
+    display: flex;
+        align-items: end;
+}
+
+span.values {
+    display: inline-block;
+    width: 36px;
+    margin-right: 20px;
+   
+    background-color: purple;
+}
