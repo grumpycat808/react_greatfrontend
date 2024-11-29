@@ -28,35 +28,35 @@ function AuthCodeInput({ onSubmit }) {
     }
 
     const handleKeyPress = (key, index) => {
-        console.log('key', key);
-        console.log('authCode[index]', authCode[index]);
+        console.log('key', key)
+        console.log('authCode[index]', authCode[index])
         if (key === 'Backspace' && authCode[index] === '') {
-            if(index > 0) {
-                console.log("index",index)
+            if (index > 0) {
+                console.log('index', index)
 
-                setFirstEmpty(index - 1);
+                setFirstEmpty(index - 1)
             }
         }
     }
     // hellowol
     //123456
-    
+
     const handlePaste = (value) => {
-        let trimmed = value.slice(0, 6);
-        console.log('trimmed', trimmed);
-    
-        if(isNaN(parseInt(trimmed, 10))) return;
+        let trimmed = value.slice(0, 6)
+        console.log('trimmed', trimmed)
+
+        if (isNaN(parseInt(trimmed, 10))) return
         console.log(Array.from(trimmed))
-        setAuthCode(Array.from(trimmed));
+        setAuthCode(Array.from(trimmed))
     }
 
-    const validateAuth = () =>{
-        let isValid = true;
-        authCode.forEach(num => {
-            if(isNaN(num) || num === '') isValid = false;
+    const validateAuth = () => {
+        let isValid = true
+        authCode.forEach((num) => {
+            if (isNaN(num) || num === '') isValid = false
         })
-        if(authCode.length !== 6) isValid = false;
-        return isValid;
+        if (authCode.length !== 6) isValid = false
+        return isValid
     }
     return (
         <div className="main">
@@ -73,16 +73,27 @@ function AuthCodeInput({ onSubmit }) {
                         onChange={(e) => handleChange(e.target.value, i)}
                         ref={i === firstEmpty ? focus : undefined}
                         onKeyUp={(e) => handleKeyPress(e.key, i)}
-                        onPaste={(e) => handlePaste(e.clipboardData.getData('Text'))}
+                        onPaste={(e) =>
+                            handlePaste(e.clipboardData.getData('Text'))
+                        }
                     ></input>
                 ))}
             </div>
             <div>
-                <button onClick={() => {
-                    setAuthCode(initialState);
-                    setFirstEmpty(0)
-                }}>Reset</button>
-                <button disabled={!validateAuth()} onClick={() => onSubmit(authCode)}>Submit</button>
+                <button
+                    onClick={() => {
+                        setAuthCode(initialState)
+                        setFirstEmpty(0)
+                    }}
+                >
+                    Reset
+                </button>
+                <button
+                    disabled={!validateAuth()}
+                    onClick={() => onSubmit(authCode)}
+                >
+                    Submit
+                </button>
             </div>
         </div>
     )
