@@ -4,6 +4,7 @@ export default function App8() {
     return (
         <AuthCodeInput2
             onSubmit={(value) => {
+                console.log(value)
                 fetch(
                     'https://www.greatfrontend.com/api/questions/auth-code-input',
                     {
