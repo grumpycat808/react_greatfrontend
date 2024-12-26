@@ -33,7 +33,13 @@ const images = [
 
 export default function App() {
     const [message, setMessage] = useState('Image Carousel')
+    const grid = [[1,2, 3], [4, 5, 6], [7, 8, 9]];
 
+    for (let index = 0; index < grid[0].length; index++) {
+        for (let j = 0; j < grid.length; j++) {
+                        console.log(grid[j][index])
+        }
+    }
     return (
         <div className="main">
             <TicTacToe2></TicTacToe2>
