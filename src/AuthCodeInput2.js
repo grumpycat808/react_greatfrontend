@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './auth-code-input.css'
 
-const defaultState = ['', '', '', '', '', ''];
+const defaultState = ['', '', '', '', '', '']
 export default function AuthCodeInput2({ onSubmit }) {
     const [code, setCode] = useState(['', '', '', '', '', ''])
     const listOfInputs = []
@@ -9,7 +9,7 @@ export default function AuthCodeInput2({ onSubmit }) {
     const inputRef = useRef(null)
 
     useEffect(() => {
-        console.log("updating focus")
+        console.log('updating focus')
         inputRef.current.focus()
     }, [focus])
     const updateCode = (value, index) => {
@@ -22,26 +22,22 @@ export default function AuthCodeInput2({ onSubmit }) {
 
         copy[index] = value
         setCode(copy)
-
-       
     }
     const validInput = (code) => {
-       return code.filter(item => isNaN(parseInt(item, 10))).length === 0;
-        
+        return code.filter((item) => isNaN(parseInt(item, 10))).length === 0
     }
     const handlePaste = (value) => {
-        const newCode = value.split("");
-        if(validInput(newCode)) {
+        const newCode = value.split('')
+        if (validInput(newCode)) {
             setCode(newCode)
         }
     }
     const handleKeyPress = (key, index) => {
-        console.log('key', key);
+        console.log('key', key)
         switch (key) {
             case 'Tab':
-                break;
+                break
             case 'Backspace':
-                
                 if (code[index] === '' && index > 0) {
                     setFocus(index - 1)
                 } else {
@@ -49,15 +45,15 @@ export default function AuthCodeInput2({ onSubmit }) {
                 }
                 break
             case 'ArrowLeft':
-                if(focus > 0) setFocus(index - 1);
+                if (focus > 0) setFocus(index - 1)
                 break
             case 'ArrowRight':
-                if(focus < 5) setFocus(index + 1);
+                if (focus < 5) setFocus(index + 1)
                 break
             default:
                 updateCode(key, index)
                 if (index < 5) {
-                    console.log("Update key", index)
+                    console.log('Update key', index)
                     setFocus(index + 1)
                 }
         }
@@ -86,15 +82,19 @@ export default function AuthCodeInput2({ onSubmit }) {
         <div className="main">
             <form
                 onSubmit={(event) => {
-                    event.preventDefault();
-                    
+                    event.preventDefault()
+
                     onSubmit(code.join(''))
                 }}
             >
                 <div className="input">{listOfInputs.map((item) => item)}</div>
                 <div>
-                    <button onClick={handleReset} type="reset">Reset</button>
-                    <button disabled={!validInput(code)} type="submit">Submit</button>
+                    <button onClick={handleReset} type="reset">
+                        Reset
+                    </button>
+                    <button disabled={!validInput(code)} type="submit">
+                        Submit
+                    </button>
                 </div>
             </form>
         </div>

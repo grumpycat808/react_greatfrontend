@@ -1,0 +1,19 @@
+.board {
+    border: solid red 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.cell {
+    height: 50px;
+    width: 50px;
+    border: solid red 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
