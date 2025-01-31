@@ -4,7 +4,6 @@ import { useState } from 'react'
 // import './image-carousel2.css'
 // import FileExplorer2 from './FileExplorer2'
 
-
 import PixelArt from './PixelArt'
 const images = [
     {
