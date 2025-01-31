@@ -3,8 +3,8 @@ import { useState } from 'react'
 // import ImageCarousel2 from './ImageCarousel2'
 // import './image-carousel2.css'
 // import FileExplorer2 from './FileExplorer2'
-import TicTacToe2 from './TicTacToe2'
-import StarRating2 from './StarRating2'
+
+import ConnectFour from './ConnectFour'
 const images = [
     {
         src: 'https://picsum.photos/id/600/600/400',
@@ -47,7 +47,7 @@ export default function App() {
     }
     return (
         <div className="main">
-            <StarRating2></StarRating2>
+            <ConnectFour></ConnectFour>
         </div>
     )
 }

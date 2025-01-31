@@ -1,0 +1,28 @@
+.default.icon:hover {
+    color: red;
+    cursor: pointer;
+    border: solid 2px red;
+}
+
+.icon {
+    color: #888;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 2px #888;
+    display: flex;
+    align-items: center;
+    padding: 5px 7px;
+    scale: 2;
+    margin-top: 50px;
+    margin-left: 40px;
+}
+
+.liked {
+    background-color: red;
+    color: white;
+    border: solid red 2px;
+}
+
+.liked:hover {
+    cursor: pointer;
+}

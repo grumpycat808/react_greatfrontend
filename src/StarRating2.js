@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './star-rating.css'
 function StarRating2(props) {
-    const [active, setActive] = useState(-1);
-    
-    const [hovered, setHovered] = useState(-1);
-    
-    const [prev, setPrev] = useState(-1);
+    const [active, setActive] = useState(-1)
+
+    const [hovered, setHovered] = useState(-1)
+
+    const [prev, setPrev] = useState(-1)
     useEffect(() => {
-        console.log("hovered", hovered)
+        console.log('hovered', hovered)
     }, [hovered])
     const starArr = []
     const handleMouseEnter = (index) => {
@@ -15,18 +15,17 @@ function StarRating2(props) {
     }
 
     const handleMouseOut = () => {
-        
         setHovered(-1)
     }
     const handleClick = (index) => {
-        setActive(index);
+        setActive(index)
     }
 
     const isActive = (index) => {
-        if(hovered > -1) {
-            
+        if (hovered > -1) {
+            return index <= hovered
         } else {
-            return index <= active;
+            return index <= active
         }
     }
     for (let index = 0; index < 5; index++) {
@@ -37,7 +36,9 @@ function StarRating2(props) {
                 onMouseOut={handleMouseOut}
                 key={index}
                 xmlns="http://www.w3.org/2000/svg"
-                className={index <= active ? "star-icon star-icon-filled":"star-icon"}
+                className={
+                    isActive(index) ? 'star-icon star-icon-filled' : 'star-icon'
+                }
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
