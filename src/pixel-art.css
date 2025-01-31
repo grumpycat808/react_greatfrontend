@@ -1,0 +1,41 @@
+.color {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+.colors {
+    display: flex;
+
+}
+
+.canvas {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 300px;
+}
+
+.row {
+    display: flex;
+}
+
+.row:nth-child(even) .cell:nth-child(odd) {
+    background-color: #e9ecef;
+}
+
+.row:nth-child(odd) .cell:nth-child(even) {
+    background-color: #e9ecef;
+}
+
+
+.cell {
+    height: 20px;
+    width: 20px;
+    /* background-color: #e9ecef; */
+}

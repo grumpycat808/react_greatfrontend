@@ -4,7 +4,8 @@ import { useState } from 'react'
 // import './image-carousel2.css'
 // import FileExplorer2 from './FileExplorer2'
 
-import ConnectFour from './ConnectFour'
+
+import PixelArt from './PixelArt'
 const images = [
     {
         src: 'https://picsum.photos/id/600/600/400',
@@ -47,7 +48,7 @@ export default function App() {
     }
     return (
         <div className="main">
-            <ConnectFour></ConnectFour>
+            <PixelArt></PixelArt>
         </div>
     )
 }
