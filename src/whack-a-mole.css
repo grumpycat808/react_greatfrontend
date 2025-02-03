@@ -18,14 +18,14 @@ img {
     width: 150px;
 }
 
+.cell.hidden .mole-head{
+    transform: translate(0px, 113px);
+}
 .mole-head {
     transform: translate(0px, 2px);
     transition: transform .3s ease-out;
 }
 
-.mole-head:hover {
-    transform: translate(0px, 113px);
-}
 .mole-hill {
     position: absolute;
     bottom: 0;

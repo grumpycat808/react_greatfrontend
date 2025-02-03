@@ -1,6 +1,32 @@
 import React, {useEffect, useState} from 'react'
 import './whack-a-mole.css'
-const moles = []
+
+
+function getRandomNumber() {
+    return Math.floor(Math.random() * 9);
+}
+function WhackAMole(props) {
+    const [visible, setVisisble] = useState([]);
+    const [points, setPoints] = useState(0);
+    const handleClick = (index) => {
+
+        if(visible.includes(index)) {
+            setPoints(points + 1);
+            const newArr = visible.filter((item) => item !== index);
+            setVisisble(newArr);
+        }
+    }
+    useEffect(() => {
+        setInterval(() => {
+            const newArr = [];
+            newArr.push(getRandomNumber());
+            newArr.push(getRandomNumber());
+
+            setVisisble([...newArr]);
+        }, 1500)
+    }, [])
+
+    const moles = []
 
 for (let index = 0; index < 3; index++) {
     const newArr = []
@@ -9,6 +35,7 @@ for (let index = 0; index < 3; index++) {
             <>
                 <div className="mole-container">
                     <img
+                        onClick={() => handleClick(index * 3 + j + 1)}
                         className="mole-head"
                         src="https://www.greatfrontend.com/img/questions/whack-a-mole/mole-head.png"
                     />
@@ -22,32 +49,16 @@ for (let index = 0; index < 3; index++) {
     }
     moles.push(newArr)
 }
-
-function getRandomNumber() {
-    return Math.floor(Math.random() * 9);
-}
-function WhackAMole(props) {
-    const handleClick = (index) => {
-        console.log("index", index)
-    }
-    const [visible, setVisisble] = useState([]);
-
-    useEffect(() => {
-        setInterval(() => {
-            const newArr = [];
-            newArr.push(getRandomNumber());
-            newArr.push(getRandomNumber());
-        }, 1500)
-    }, [])
     return (
         <div className="board">
+            <h1>Points: {points}</h1>
             {moles.map((row, rowIndex) => {
                 return (
                     <div className="row" key={rowIndex}>
                         {row.map((cell, colIndex) => (
                             <div
-                                className={"cell"}
-                                onClick={() => handleClick(rowIndex * 3 + colIndex + 1)}
+                                className={visible.includes(rowIndex * 3 + colIndex + 1)? "cell":"hidden cell"}
+                                
                                 key={colIndex}
                             >
                                 {cell}
@@ -56,6 +67,8 @@ function WhackAMole(props) {
                     </div>
                 )
             })}
+            <br></br>
+            <button>Start Over</button>
         </div>
     )
 }
