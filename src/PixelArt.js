@@ -16,24 +16,28 @@ const COLORS = {
 }
 
 function PixelArt(props) {
-    const [drawColor, setDrawColor] = useState(COLORS.black)
+    const [drawColor, setDrawColor] = useState('black')
+    const [action, setAction] = useState('draw')
     return (
         <div>
-            <Canvas></Canvas>
+            <Canvas action={action} activeColor={COLORS[drawColor]}></Canvas>
             <div className="row">
-                <div className="action"></div>
+                <div className="action">
+                    <button className={action == "draw" ? "active" : ""} onClick={() => setAction('draw')}>Draw</button>
+                    <button className={action == "erase" ? "active" : ""} onClick={() => setAction('erase')}>Erase</button>
+                </div>
+                <ul className="colors">
+                    {Object.entries(COLORS).map(([color, hex]) => (
+                        <li key={color}>
+                            <span
+                                onClick={() => setDrawColor(color)}
+                                className={drawColor == color ? "active color" : "color"}
+                                style={{ backgroundColor: hex }}
+                            ></span>
+                        </li>
+                    ))}
+                </ul>{' '}
             </div>
-            <ul className="colors">
-                {Object.entries(COLORS).map(([color, hex]) => (
-                    <li key={color}>
-                        <span
-                            onClick={() => setDrawColor(color)}
-                            className="color"
-                            style={{ backgroundColor: hex }}
-                        ></span>
-                    </li>
-                ))}
-            </ul>
         </div>
     )
 }
