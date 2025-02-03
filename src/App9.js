@@ -4,8 +4,7 @@ import { useState } from 'react'
 // import './image-carousel2.css'
 // import FileExplorer2 from './FileExplorer2'
 
-
-import WhackAMole from './MemoryGame'
+import WhackAMole from './WhackAMole'
 const images = [
     {
         src: 'https://picsum.photos/id/600/600/400',

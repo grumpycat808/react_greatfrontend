@@ -1,15 +1,36 @@
+img {
+    width: 150px;
+}
 .board {
     display: flex;
-    max-width: 210px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 600px;
+}
+.row {
+    display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
-.square {
-    width: 50px;
-    border: solid black 1px;
+.cell {
+    position: relative;
+    height: 200px;
+    width: 150px;
 }
 
-.hidden {
-    display: none;
+.mole-head {
+    transform: translate(0px, 2px);
+}
+
+.mole-hill {
+    position: absolute;
+    bottom: 0;
+}
+
+.mole-container {
+    height: 129px;
+    width: 150px;
+    position: absolute;
+    top: 48px;
+    overflow: hidden;
 }
