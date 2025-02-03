@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, {useEffect, useState} from 'react'
 import './whack-a-mole.css'
 const moles = []
 
@@ -6,7 +6,7 @@ for (let index = 0; index < 3; index++) {
     const newArr = []
     for (let j = 0; j < 3; j++) {
         newArr.push(
-            <div className="cell">
+            <>
                 <div className="mole-container">
                     <img
                         className="mole-head"
@@ -17,23 +17,41 @@ for (let index = 0; index < 3; index++) {
                     className="mole-hill"
                     src="https://www.greatfrontend.com/img/questions/whack-a-mole/mole-hill.png"
                 />
-            </div>,
+            </>,
         )
     }
     moles.push(newArr)
 }
+
+function getRandomNumber() {
+    return Math.floor(Math.random() * 9);
+}
 function WhackAMole(props) {
-
-    const handleClick = (row, column) => {
-
+    const handleClick = (index) => {
+        console.log("index", index)
     }
+    const [visible, setVisisble] = useState([]);
+
+    useEffect(() => {
+        setInterval(() => {
+            const newArr = [];
+            newArr.push(getRandomNumber());
+            newArr.push(getRandomNumber());
+        }, 1500)
+    }, [])
     return (
         <div className="board">
             {moles.map((row, rowIndex) => {
                 return (
                     <div className="row" key={rowIndex}>
                         {row.map((cell, colIndex) => (
-                            <Fragment onClick={() => handleClick(rowIndex, colIndex)} key={colIndex}>{cell}</Fragment>
+                            <div
+                                className={"cell"}
+                                onClick={() => handleClick(rowIndex * 3 + colIndex + 1)}
+                                key={colIndex}
+                            >
+                                {cell}
+                            </div>
                         ))}
                     </div>
                 )
