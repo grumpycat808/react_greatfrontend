@@ -1,10 +1,6 @@
 import { useState } from 'react'
 
-// import ImageCarousel2 from './ImageCarousel2'
-// import './image-carousel2.css'
-// import FileExplorer2 from './FileExplorer2'
-
-import WhackAMole from './WhackAMole'
+import StarRating2 from './StarRating2'
 const images = [
     {
         src: 'https://picsum.photos/id/600/600/400',
@@ -47,7 +43,7 @@ export default function App() {
     }
     return (
         <div className="main">
-            <WhackAMole></WhackAMole>
+            <StarRating2></StarRating2>
         </div>
     )
 }

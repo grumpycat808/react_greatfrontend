@@ -1,5 +1,10 @@
+.stars-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .star-icon {
-    width: 50px;
+    max-width: 50px;
     cursor: pointer;
 }
 

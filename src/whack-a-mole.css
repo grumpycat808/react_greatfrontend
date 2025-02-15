@@ -18,12 +18,12 @@ img {
     width: 150px;
 }
 
-.cell.hidden .mole-head{
+.cell.hidden .mole-head {
     transform: translate(0px, 113px);
 }
 .mole-head {
     transform: translate(0px, 2px);
-    transition: transform .3s ease-out;
+    transition: transform 0.3s ease-out;
 }
 
 .mole-hill {

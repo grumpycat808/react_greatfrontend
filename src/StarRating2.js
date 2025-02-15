@@ -1,44 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './star-rating.css'
+
 function StarRating2(props) {
+    const starsList = []
     const [active, setActive] = useState(-1)
 
     const [hovered, setHovered] = useState(-1)
 
-    const [prev, setPrev] = useState(-1)
-    useEffect(() => {
-        console.log('hovered', hovered)
-    }, [hovered])
-    const starArr = []
-    const handleMouseEnter = (index) => {
-        setHovered(index)
-    }
-
-    const handleMouseOut = () => {
-        setHovered(-1)
-    }
-    const handleClick = (index) => {
-        setActive(index)
-    }
-
-    const isActive = (index) => {
-        if (hovered > -1) {
-            return index <= hovered
-        } else {
-            return index <= active
+    const getClass = (index) => {
+        if(hovered > -1) {
+            return index <= hovered ? 'star-icon star-icon-filled' : 'star-icon';
         }
+
+        return index <= active ? 'star-icon star-icon-filled' : 'star-icon';
     }
     for (let index = 0; index < 5; index++) {
-        starArr.push(
+        starsList.push(
             <svg
-                onMouseOver={(e) => handleMouseEnter(index)}
-                onClick={() => handleClick(index)}
-                onMouseOut={handleMouseOut}
-                key={index}
                 xmlns="http://www.w3.org/2000/svg"
-                className={
-                    isActive(index) ? 'star-icon star-icon-filled' : 'star-icon'
-                }
+                className={getClass(index)}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -52,7 +32,24 @@ function StarRating2(props) {
             </svg>,
         )
     }
-    return <div>{starArr.map((star) => star)}</div>
+
+    return (
+        <div className="stars-container">
+            {starsList.map((item, index) => {
+                return (
+                    <div
+                        style={{ width: '50px' }}
+                        onMouseEnter={() => setHovered(index)}
+                        onMouseLeave={() => setHovered(-1)}
+                        onClick={() => setActive(index)}
+                        key={index}
+                    >
+                        {item}
+                    </div>
+                )
+            })}
+        </div>
+    )
 }
 
 export default StarRating2
