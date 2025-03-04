@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './star-rating.css'
 
-function StarRating2(props) {
+function StarRating2() {
     const starsList = []
     const [active, setActive] = useState(-1)
 
