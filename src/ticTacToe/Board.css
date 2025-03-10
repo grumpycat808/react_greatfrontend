@@ -7,3 +7,7 @@
 .board-row {
     display: flex;
 }
+
+ul {
+    list-style: none;
+}

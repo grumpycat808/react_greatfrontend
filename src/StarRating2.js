@@ -8,11 +8,11 @@ function StarRating2() {
     const [hovered, setHovered] = useState(-1)
 
     const getClass = (index) => {
-        if(hovered > -1) {
-            return index <= hovered ? 'star-icon star-icon-filled' : 'star-icon';
+        if (hovered > -1) {
+            return index <= hovered ? 'star-icon star-icon-filled' : 'star-icon'
         }
 
-        return index <= active ? 'star-icon star-icon-filled' : 'star-icon';
+        return index <= active ? 'star-icon star-icon-filled' : 'star-icon'
     }
     for (let index = 0; index < 5; index++) {
         starsList.push(

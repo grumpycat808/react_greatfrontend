@@ -1,6 +1,6 @@
-import React from 'react';
-import Square from './Square';
-import './Board.css'; // Import the CSS file for styling
+import React from 'react'
+import Square from './Square'
+import './Board.css' // Import the CSS file for styling
 
 const style = {
     width: 'fit-content',
@@ -8,17 +8,20 @@ const style = {
     border: '4px solid darkblue',
     borderRadius: '10px',
     // height: '250px',
-};
-function Board({squares, onClick}) {
-    
+}
+function Board({ squares, onClick }) {
     return (
         <div style={style} className="board">
             {squares.map((row, rowIndex) => (
                 <div className="board-row">
-                    {row.map((square, colIndex) => <Square value={square} onClick={() => onClick(rowIndex, colIndex)} />)}
+                    {row.map((square, colIndex) => (
+                        <Square
+                            value={square}
+                            onClick={() => onClick(rowIndex, colIndex)}
+                        />
+                    ))}
                 </div>
-            )
-            )}
+            ))}
             {/* // <div className="board-row">
             //     <Square value={squares[0]} onClick={() => onClick(0)} />
             //     <Square value={squares[1]} onClick={() => onClick(1)} />
@@ -35,7 +38,7 @@ function Board({squares, onClick}) {
             //     <Square value={squares[8]} onClick={() => onClick(8)} />
             // </div> */}
         </div>
-    );
+    )
 }
 
-export default Board;
+export default Board

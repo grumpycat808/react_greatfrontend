@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const style = { 
+const style = {
     background: 'lightblue',
     border: '2px solid darkblue',
     fontSize: '30px',
@@ -8,17 +8,15 @@ const style = {
     cursor: 'pointer',
     outline: 'none',
     width: '50px',
-    height: '50px'
+    height: '50px',
 }
 
-
-function Square({onClick, value}) {
+function Square({ onClick, value }) {
     return (
         <button style={style} onClick={onClick}>
             {value}
-            
         </button>
-    );
+    )
 }
 
-export default Square;
+export default Square
