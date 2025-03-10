@@ -42,9 +42,9 @@ function Game(props) {
 
     const goToStep = (step) => {
         const copyOfHistory = history[step].map((row) => [...row])
-        copyOfHistory.slice(0, step);
-        console.log("copy", [copyOfHistory])
-        setStep(step);
+        copyOfHistory.slice(0, step)
+        console.log('copy', [copyOfHistory])
+        setStep(step)
         setHistory([copyOfHistory])
     }
     return (
@@ -55,11 +55,15 @@ function Game(props) {
                 {history.map((_, index) => {
                     return index ? (
                         <li>
-                            <button onClick={() => goToStep(index)} key={index}>Go to Step {index}</button>
+                            <button onClick={() => goToStep(index)} key={index}>
+                                Go to Step {index}
+                            </button>
                         </li>
                     ) : (
                         <li key={index}>
-                            <button onClick={() => goToStep(0)}>Go to Start</button>
+                            <button onClick={() => goToStep(0)}>
+                                Go to Start
+                            </button>
                         </li>
                     )
                 })}

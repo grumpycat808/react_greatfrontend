@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import StarRating2 from './StarRating2'
 import Game from './ticTacToe/Game'
+import TransferList from './ticTacToe/TransferList'
 const images = [
     {
         src: 'https://picsum.photos/id/600/600/400',
@@ -39,7 +40,7 @@ export default function App() {
 
     return (
         <div className="main">
-            <Game></Game>
+            <TransferList></TransferList>
         </div>
     )
 }
