@@ -15,14 +15,12 @@ function TransferList(props) {
             { label: 'Svelte', selected: false },
         ],
     })
-   
 
     const { left, right } = list
 
     const handleSelect = (item, side) => {
-        
-        const listCopy = structuredClone(list);
-        const listItem = listCopy[side].find(i => i.label === item);
+        const listCopy = structuredClone(list)
+        const listItem = listCopy[side].find((i) => i.label === item)
         listItem.selected = !listItem.selected
 
         setList(listCopy)
@@ -30,18 +28,17 @@ function TransferList(props) {
 
     const handleClick = (direction) => {
         const listCopy = structuredClone(list)
-        if (direction === 'left') {
-            const itemsToMove = list.right.filter(i => i.selected);
-            listCopy.left = [...listCopy.left, ...itemsToMove];
-            listCopy.right = listCopy.right.filter(
-                // (rightItem) => !selected.right.includes(rightItem),
-            )
+        const itemsToMove =
+            direction === 'right'
+                ? list.left.filter((i) => i.selected)
+                : list.right.filter((i) => i.selected)
+
+        if (direction === 'right') {
+            listCopy.right = [...listCopy.right, ...itemsToMove]
+            listCopy.left = listCopy.left.filter((i) => !i.selected)
         } else {
-            const itemsToMove = list.left.filter(i => i.selected);
-            listCopy.left = [...listCopy.right, ...itemsToMove];
-            listCopy.left = listCopy.left.filter(
-                // (leftItem) => !selected.left.includes(leftItem),
-            )
+            listCopy.left = [...listCopy.left, ...itemsToMove]
+            listCopy.right = listCopy.right.filter((i) => !i.selected)
         }
 
         setList(listCopy)
@@ -60,6 +57,20 @@ function TransferList(props) {
 
         setList(listCopy)
     }
+
+    const getBtnDisabled = (btn) => {
+        switch (btn) {
+            case 'left':
+                return list.right.filter((i) => i.selected).length === 0
+
+            case 'right':
+                return list.left.filter((i) => i.selected).length === 0
+            case 'allLeft':
+                return list.right.length === 0
+            case 'allRight':
+                return list.left.length === 0
+        }
+    }
     return (
         <div>
             <div className="main">
@@ -69,8 +80,14 @@ function TransferList(props) {
                             <li key={index}>
                                 <input
                                     type="checkbox"
-                                    onChange={() => handleSelect(item.label, 'left')}
-                                    checked={list.left.find((i) => i.label === item.label).selected}
+                                    onChange={() =>
+                                        handleSelect(item.label, 'left')
+                                    }
+                                    checked={
+                                        list.left.find(
+                                            (i) => i.label === item.label,
+                                        ).selected
+                                    }
                                 ></input>
                                 {item.label}
                             </li>
@@ -79,13 +96,21 @@ function TransferList(props) {
                 </ul>
                 <div className="buttons">
                     <button
+                        disabled={getBtnDisabled('left')}
+                        onClick={() => handleClick('left')}
+                    >{`<`}</button>
+                    <button
+                        disabled={getBtnDisabled('allLeft')}
                         onClick={() => handleTransferAll('left')}
                     >{`<<`}</button>
-                    <button onClick={() => handleClick('left')}>{`<`}</button>
                     <button
+                        disabled={getBtnDisabled('right')}
                         onClick={() => handleTransferAll('right')}
                     >{`>>`}</button>
-                    <button onClick={() => handleClick('right')}>{`>`}</button>
+                    <button
+                        disabled={getBtnDisabled('allRight')}
+                        onClick={() => handleClick('right')}
+                    >{`>`}</button>
                 </div>
                 <ul>
                     {right.map((item, index) => {
@@ -93,8 +118,14 @@ function TransferList(props) {
                             <li key={index}>
                                 <input
                                     type="checkbox"
-                                    onChange={() => handleSelect(item.label, 'right')}
-                                    checked={list.right.find((i) => i.label === item.label).selected}
+                                    onChange={() =>
+                                        handleSelect(item.label, 'right')
+                                    }
+                                    checked={
+                                        list.right.find(
+                                            (i) => i.label === item.label,
+                                        ).selected
+                                    }
                                 ></input>
                                 {item.label}{' '}
                             </li>
