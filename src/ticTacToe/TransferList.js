@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './transferList.css'
-function TransferList(props) {
+function TransferList() {
     const [list, setList] = useState({
         left: [
             { label: 'HTML', selected: false },
@@ -21,7 +21,7 @@ function TransferList(props) {
     const handleSelect = (item, side) => {
         const listCopy = structuredClone(list)
         const listItem = listCopy[side].find((i) => i.label === item)
-        listItem.selected = !listItem.selected
+        listItem.selected = !listItem.selected;
 
         setList(listCopy)
     }
@@ -62,7 +62,6 @@ function TransferList(props) {
         switch (btn) {
             case 'left':
                 return list.right.filter((i) => i.selected).length === 0
-
             case 'right':
                 return list.left.filter((i) => i.selected).length === 0
             case 'allLeft':
@@ -127,7 +126,7 @@ function TransferList(props) {
                                         ).selected
                                     }
                                 ></input>
-                                {item.label}{' '}
+                                {item.label}
                             </li>
                         )
                     })}
