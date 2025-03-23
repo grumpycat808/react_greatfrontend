@@ -6,10 +6,10 @@ function Board(props) {
     )
     const [currentPlayer, setCurrentPlayer] = useState('yellow');
     const [winner, setWinner] = useState('yellow');
-    useEffect(() => {
-        console.log(board)
-    }, [board])
-    const checkWinner = () => {}
+   
+    const checkWinner = (row, col) => {
+        
+    }
 
     const handleClick = (colNumber) => {
         let canClick = false
@@ -17,7 +17,8 @@ function Board(props) {
         for (let index = board.length - 1; index >= 0; index--) {
             if (board[index][colNumber] === null) {
                 canClick = true
-                boardCopy[index][colNumber] = currentPlayer
+                boardCopy[index][colNumber] = currentPlayer;
+                checkWinner(index, colNumber);
                 break
             }
         }
@@ -27,6 +28,9 @@ function Board(props) {
         setBoard(boardCopy)
     }
 
+    const handleRestartClick = () => {
+        setBoard(new Array(6).fill(null).map(() => new Array(7).fill(null)));
+    }
     return (
         <div className="main">
             <div className="current-player">
@@ -47,7 +51,7 @@ function Board(props) {
             </div>
             <div className="game-status">
                 
-                <button>Restart</button>{winner && <span>Winner: {winner}</span>}
+                <button onClick={handleRestartClick}>Restart</button>{winner && <span>Winner: {winner}</span>}
             </div>
         </div>
     )
