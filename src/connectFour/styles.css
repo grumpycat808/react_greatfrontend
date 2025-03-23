@@ -1,0 +1,47 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.cell {
+    height: 60px;
+    width: 60px;
+    border: solid black 1px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+.cell.red {
+    background-color: #d9313d;
+}
+
+
+.cell.yellow {
+    background-color: #fdc601;
+}
+.board {
+    border: solid black 1px;
+    display: flex;
+    flex-direction: column;
+    background-color: #1c61f2;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.row:first-of-type {
+    margin-top: 15px;
+}
+
+.game-status {
+    display: flex;
+    justify-content: space-between;
+}

@@ -21,7 +21,7 @@ function TransferList() {
     const handleSelect = (item, side) => {
         const listCopy = structuredClone(list)
         const listItem = listCopy[side].find((i) => i.label === item)
-        listItem.selected = !listItem.selected;
+        listItem.selected = !listItem.selected
 
         setList(listCopy)
     }
