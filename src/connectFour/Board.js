@@ -5,25 +5,28 @@ function Board(props) {
         new Array(6).fill(null).map(() => new Array(7).fill(null)),
     )
     const [currentPlayer, setCurrentPlayer] = useState('yellow');
-    const [winner, setWinner] = useState('yellow');
+    const [winner, setWinner] = useState(null);
    
     const checkWinner = (row, col) => {
-        
+        // setWinner(currentPlayer);
     }
 
-    const handleClick = (colNumber) => {
-        let canClick = false
-        const boardCopy = board.map((row) => [...row])
+    const getAvailableRow = (colNumber) => {
         for (let index = board.length - 1; index >= 0; index--) {
             if (board[index][colNumber] === null) {
-                canClick = true
-                boardCopy[index][colNumber] = currentPlayer;
-                checkWinner(index, colNumber);
-                break
+                return index;
             }
         }
-
-        if (!canClick) return
+        return null;
+    }
+    const handleClick = (colNumber) => {
+        
+        const boardCopy = board.map((row) => [...row])
+        
+        const availableRow = getAvailableRow(colNumber);
+        if (!availableRow) return;
+// checkWinner(index, colNumber);
+        boardCopy[availableRow][colNumber] = currentPlayer;
         setCurrentPlayer(currentPlayer === 'yellow' ? 'red' : 'yellow')
         setBoard(boardCopy)
     }
