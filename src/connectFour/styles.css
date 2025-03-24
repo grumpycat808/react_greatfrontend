@@ -22,6 +22,14 @@
 .cell.yellow {
     background-color: #fdc601;
 }
+
+.cell.yellow-hover {
+    background-color: #fdc601;
+}
+
+.cell.red-hover {
+    background-color: #d9313d;
+}
 .board {
     border: solid black 1px;
     display: flex;
@@ -49,4 +57,17 @@
 
 .game-status button {
     cursor: pointer;
+}
+
+.player-area {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.player-area .cell {
+    border: none;
 }
