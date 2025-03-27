@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 
+const YELLOW = 'yellow'
+const RED = 'red'
 function Board() {
     const [board, setBoard] = useState(
         new Array(6).fill(null).map(() => new Array(7).fill(null)),
     )
-    const [currentPlayer, setCurrentPlayer] = useState('yellow')
+    const [currentPlayer, setCurrentPlayer] = useState(YELLOW)
     const [winner, setWinner] = useState(null)
     const [hovered, setHovered] = useState(null)
     const checkWinner = (row, col, board) => {
@@ -19,7 +21,7 @@ function Board() {
         ]
 
         const getNumber = (dRow, dCol) => {
-            let [count, currentRow, currentCol] = [0, row, col];
+            let [count, currentRow, currentCol] = [0, row, col]
             // debugger;
             while (
                 currentCol >= 0 &&
@@ -28,12 +30,12 @@ function Board() {
                 currentRow < board.length &&
                 board[currentRow][currentCol] == currentPlayer
             ) {
-                currentRow += dRow;
-                currentCol += dCol;
+                currentRow += dRow
+                currentCol += dCol
                 count++
             }
 
-            currentRow = row - dRow;
+            currentRow = row - dRow
             currentCol = col - dCol
             while (
                 currentCol >= 0 &&
@@ -42,54 +44,46 @@ function Board() {
                 currentRow < board.length &&
                 board[currentRow][currentCol] == currentPlayer
             ) {
-                currentRow -= dRow;
-                currentCol -= dCol;
-                
+                currentRow -= dRow
+                currentCol -= dCol
+
                 count++
             }
-            return count;
+            return count
         }
         for (let index = 0; index < directions.length; index++) {
-            const dir = directions[index];
-            if(getNumber(dir[0], dir[1]) >= 4) {
-                console.log(getNumber(dir[0], dir[1]))
-                return currentPlayer;
+            const dir = directions[index]
+            if (getNumber(dir[0], dir[1]) >= 4) {
+                return currentPlayer
             }
         }
 
         return null
     }
 
-    const getAvailableRow = (colNumber) => {
-        for (let index = board.length - 1; index >= 0; index--) {
-            
-            if (board[index][colNumber] === null) {
-                
-                return index
-            }
-        }
-        return null
-    }
+    const getAvailableRow = (colNumber) =>
+        [...board].reverse().findIndex((row) => row[colNumber] === null)
     const handleClick = (colNumber) => {
         const availableRow = getAvailableRow(colNumber)
-        
+
         if (availableRow === null || winner !== null) return
         const boardCopy = board.map((row) => [...row])
-        boardCopy[availableRow][colNumber] = currentPlayer;
+        boardCopy[availableRow][colNumber] = currentPlayer
 
-        if(checkWinner(availableRow, colNumber, boardCopy)) {
-            setWinner(currentPlayer);
+        if (checkWinner(availableRow, colNumber, boardCopy)) {
+            setWinner(currentPlayer)
+            console.log('HEy')
             setBoard(boardCopy)
-            return;
+            return
         }
-        setCurrentPlayer(currentPlayer === 'yellow' ? 'red' : 'yellow')
+        setCurrentPlayer(currentPlayer === YELLOW ? RED : YELLOW)
         setBoard(boardCopy)
     }
 
     const handleRestartClick = () => {
-        setWinner(null);
-        setBoard(new Array(6).fill(null).map(() => new Array(7).fill(null)));
-        setCurrentPlayer('yellow')
+        setWinner(null)
+        setBoard(new Array(6).fill(null).map(() => new Array(7).fill(null)))
+        setCurrentPlayer(YELLOW)
     }
 
     return (
@@ -118,10 +112,10 @@ function Board() {
                         {row.map((cell, colIndex) => (
                             <div
                                 key={colIndex}
-                                className={`cell ${cell === 'yellow' || cell === 'red' ? cell : ''}`.trim()}
+                                className={`cell ${cell === YELLOW || cell === RED ? cell : ''}`.trim()}
                                 onMouseEnter={() => setHovered(colIndex)}
                                 onMouseOut={() => setHovered(null)}
-                                onClick={() => handleClick( colIndex)}
+                                onClick={() => handleClick(colIndex)}
                             ></div>
                         ))}
                     </div>

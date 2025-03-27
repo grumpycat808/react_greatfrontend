@@ -34,6 +34,7 @@
     display: flex;
     flex-direction: column;
     background-color: #1c61f2;
+    width: 600px;
 }
 
 .row {
@@ -69,4 +70,5 @@
 
 .player-area .cell {
     border: none;
+    width: 600px;
 }
