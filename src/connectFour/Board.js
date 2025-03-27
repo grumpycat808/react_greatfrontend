@@ -90,7 +90,7 @@ function Board() {
     }
 
     return (
-        <div className="main">
+        <div className="game-container">
             <div className="current-player">
                 <h1>Current Player: {currentPlayer.toLocaleUpperCase()}</h1>
             </div>

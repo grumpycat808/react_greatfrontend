@@ -1,55 +1,56 @@
+@import url('variables.css');
+
 * {
     box-sizing: border-box;
 }
-.main {
+.game-container {
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 80%;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .cell {
     height: 60px;
     width: 60px;
-    border: solid black 1px;
+    border: solid var(--black-color) 1px;
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--white-color);
     cursor: pointer;
+    transition: transform 0.1s ease-in-out;
 }
-
+.cell:active {
+    transform: scale(0.9);
+}
 .cell.red {
-    background-color: #d9313d;
+    background-color: var(--red-color);
 }
 
 .cell.yellow {
-    background-color: #fdc601;
+    background-color: var(--yellow-color);
 }
 
 .cell.yellow-hover {
-    background-color: #fdc601;
+    background-color: var(--yellow-color);
 }
 
 .cell.red-hover {
-    background-color: #d9313d;
+    background-color: var(--red-color);
 }
 .board {
-    border: solid black 1px;
+    border: solid var(--black-color) 1px;
     display: flex;
     flex-direction: column;
-    background-color: #1c61f2;
-    /* width: 600px; */
+    background-color: var(--board-color);
+    padding: 15px;
+    gap: 15px;
 }
 
 .row {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-.row:first-of-type {
-    margin-top: 15px;
+    gap: 15px;
+    justify-content: center;
 }
 
 .game-status {
@@ -66,12 +67,10 @@
 
 .player-area {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 15px;
-    padding-right: 15px;
-    padding-left: 15px;
+    gap: 15px;
     cursor: pointer;
-    /* width: 600px; */
 }
 
 .player-area .cell {
