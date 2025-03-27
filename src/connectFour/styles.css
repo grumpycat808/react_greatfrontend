@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 .main {
     display: flex;
     flex-direction: column;
@@ -66,9 +69,9 @@
     padding-right: 15px;
     padding-left: 15px;
     cursor: pointer;
+    width: 600px;
 }
 
 .player-area .cell {
     border: none;
-    width: 600px;
 }

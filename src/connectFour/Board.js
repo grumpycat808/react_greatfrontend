@@ -61,18 +61,22 @@ function Board() {
         return null
     }
 
-    const getAvailableRow = (colNumber) =>
-        [...board].reverse().findIndex((row) => row[colNumber] === null)
+    const getAvailableRow = (colNumber) => {
+        for (let index = board.length - 1; index >= 0; index--) {
+            if (board[index][colNumber] === null) return index
+        }
+        return null
+    }
+
     const handleClick = (colNumber) => {
         const availableRow = getAvailableRow(colNumber)
 
         if (availableRow === null || winner !== null) return
         const boardCopy = board.map((row) => [...row])
-        boardCopy[availableRow][colNumber] = currentPlayer
 
+        boardCopy[availableRow][colNumber] = currentPlayer
         if (checkWinner(availableRow, colNumber, boardCopy)) {
             setWinner(currentPlayer)
-            console.log('HEy')
             setBoard(boardCopy)
             return
         }
