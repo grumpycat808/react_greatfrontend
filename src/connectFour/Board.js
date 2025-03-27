@@ -11,7 +11,6 @@ function Board() {
     const [winner, setWinner] = useState(null)
     const [hovered, setHovered] = useState(null)
     const checkWinner = (row, col, board) => {
-        // setWinner(currentPlayer);
         const directions = [
             //row, col
             [0, 1], // right
