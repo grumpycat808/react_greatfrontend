@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import Board from './connectFour/Board'
+import Game from './connectFour/Game'
 const images = [
     {
         src: 'https://picsum.photos/id/600/600/400',
@@ -38,7 +38,7 @@ export default function App() {
 
     return (
         <div className="main">
-            <Board></Board>
+            <Game></Game>
         </div>
     )
 }
