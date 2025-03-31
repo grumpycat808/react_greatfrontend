@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Board from './Board'
 import './styles.css'
 import { getAvailableRow, checkWinner } from './helpers'
+import GameStatus from './GameStatus'
 
 const YELLOW = 'yellow'
 const RED = 'red'
@@ -43,7 +44,7 @@ function Game() {
                 <h1>Current Player: {currentPlayer.toLocaleUpperCase()}</h1>
             </div>
             <div className="player-area">
-                {board[0].map((cell, index) => (
+                {board[0].map((_, index) => (
                     <div
                         key={index}
                         className={
@@ -63,10 +64,10 @@ function Game() {
                 handleMouseOut={handleMouseOut}
                 handleClick={handleClick}
             ></Board>
-            <div className="game-status">
-                <button onClick={handleRestartClick}>Restart</button>
-                {winner && <span>Winner: {winner}</span>}
-            </div>
+            <GameStatus
+                handleRestartClick={handleRestartClick}
+                winner={winner}
+            ></GameStatus>
         </div>
     )
 }
