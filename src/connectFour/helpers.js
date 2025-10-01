@@ -54,3 +54,4 @@ export const checkWinner = (row, col, board, currentPlayer) => {
 
     return null
 }
+console.log('Hello world')
