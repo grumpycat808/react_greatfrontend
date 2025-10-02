@@ -1,21 +1,14 @@
-import React from 'react'
-import { useCycle } from './hooks/useCycle'
+import { useDefault } from './hooks/useDefault'
 function App10(props) {
-    const { result } = useCycle('low', 'medium', 'high')
+    const initialUser = 2
+    const defaultUser = 1
+    const [user, setUser] = useDefault(defaultUser, initialUser)
 
     return (
         <div>
-            <p>State:</p>
-            <button
-                onClick={() => {
-                    result.current[1]()
-                    result.current[1]()
-                    result.current[1]()
-                    console.log(result.current[0])
-                }}
-            >
-                Cycle
-            </button>
+            <div>User: {user}</div>
+            <input onChange={(e) => setUser(e.target.value)} />
+            <button onClick={() => setUser((prev) => prev + 1)}>reset</button>
         </div>
     )
 }
