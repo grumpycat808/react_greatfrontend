@@ -1,14 +1,12 @@
-import { useDefault } from './hooks/useDefault'
+import { useStateWithReset } from './hooks/useStateWithReset'
 function App10(props) {
-    const initialUser = 2
-    const defaultUser = 1
-    const [user, setUser] = useDefault(defaultUser, initialUser)
+    const [value, setValue, resetValue] = useStateWithReset(10)
 
     return (
         <div>
-            <div>User: {user}</div>
-            <input onChange={(e) => setUser(e.target.value)} />
-            <button onClick={() => setUser((prev) => prev + 1)}>reset</button>
+            <div>Value: {value}</div>
+            <input onChange={(e) => setValue(e.target.value)} />
+            <button onClick={resetValue}>reset</button>
         </div>
     )
 }
