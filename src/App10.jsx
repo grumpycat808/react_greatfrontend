@@ -1,12 +1,12 @@
-import { useStateWithReset } from './hooks/useStateWithReset'
+import { useFocus } from './hooks/useFocus'
 function App10(props) {
-    const [value, setValue, resetValue] = useStateWithReset(10)
+    const [ref, focus] = useFocus()
 
     return (
         <div>
-            <div>Value: {value}</div>
-            <input onChange={(e) => setValue(e.target.value)} />
-            <button onClick={resetValue}>reset</button>
+            <input type="number" />
+            <input ref={ref} type="text" />
+            <button onClick={focus}>Focus input</button>
         </div>
     )
 }
