@@ -1,14 +1,15 @@
-import { useFocus } from './hooks/useFocus'
+import { useEffectOnce } from './hooks/useEffectOnce'
+import { useState, useEffect } from 'react'
 function App10(props) {
-    const [ref, focus] = useFocus()
+    useEffect(() => {
+        console.log('Running effect once on mount')
 
-    return (
-        <div>
-            <input type="number" />
-            <input ref={ref} type="text" />
-            <button onClick={focus}>Focus input</button>
-        </div>
-    )
+        return () => {
+            console.log('Running clean-up of effect on unmount')
+        }
+    })
+
+    return null
 }
 
 export default App10
