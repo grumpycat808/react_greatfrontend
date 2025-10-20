@@ -1,13 +1,26 @@
 import { useState, useEffect } from 'react'
-import { useEffectOnce } from './hooks/useEffectOnce'
 
-function Test1(props) {
-    const [celsius, setCelsius] = React.useState(0)
-    const [fahrenheit, setFahrenheit] = React.useState(32)
+function Test1() {
+    const [celsius, setCelsius] = useState(0)
+
+    const fahrenheit = (1.8 * celsius + 32).toFixed(2)
+
     return (
         <div>
-            Fahrenheit: <input type="number" name="fahrenheit"></input>
-            Celsius: <input type="number" name="celsius"></input>
+            Fahrenheit:{' '}
+            <input
+                type="number"
+                value={fahrenheit}
+                onChange={(e) =>
+                    setCelsius(((e.target.value - 32) * (5 / 9)).toFixed(2))
+                }
+            />
+            Celsius:{' '}
+            <input
+                type="number"
+                value={celsius}
+                onChange={(e) => setCelsius(e.target.value)}
+            />
         </div>
     )
 }
