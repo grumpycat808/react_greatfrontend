@@ -1,11 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useEffectOnce = (effect) => {
-    let counter = 0
+    const [counter, setCounter] = useState(0)
+
     useEffect(() => {
         if (counter === 0) {
-            effect()
-            counter++
+            setCounter(1)
+            return effect()
         }
-    })
+    }, [counter])
 }
