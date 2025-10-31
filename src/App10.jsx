@@ -1,20 +1,18 @@
-import { useEffectOnce } from './hooks/useEffectOnce'
+import { useDebounce } from './hooks/useDebounce'
 import { useState, useEffect } from 'react'
 import Test1 from './Test1'
 import Test2 from './Test2'
-function App10(props) {
-    const [displayed, setDisplayed] = useState(1)
+function App10() {
+    const [keyword, setKeyword] = useState('')
+    const debouncedKeyword = useDebounce(keyword, 1000)
 
     return (
         <div>
-            {displayed === 1 ? <Test1></Test1> : <Test2></Test2>}
-            <button
-                onClick={() => {
-                    displayed === 1 ? setDisplayed(2) : setDisplayed(1)
-                }}
-            >
-                Toggle Component
-            </button>
+            <input
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+            />
+            <p>Debounced keyword: {debouncedKeyword}</p>
         </div>
     )
 }
