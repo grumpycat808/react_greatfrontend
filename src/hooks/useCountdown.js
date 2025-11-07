@@ -1,20 +1,31 @@
 import { useState } from 'react'
 
-export const useCountdown = ({ countStart, intervalMs = 1000 }) => {
+export const useCountdown = ({
+    countStart,
+    countStop = 0,
+    intervalMs = 1000,
+    isIncrement = false,
+}) => {
     const [count, setCount] = useState(countStart)
-    let intervalID
+    const [intervalId, setIntervalID] = useState(null)
 
     const start = () => {
-        intervalID = setInterval(() => {
-            setCount((prev) => prev - 1)
+        const newId = setInterval(() => {
+            if (isIncrement) {
+                setCount((prev) => (prev < countStop ? prev + 1 : countStop))
+            } else {
+                setCount((prev) => (prev > countStop ? prev - 1 : countStop))
+            }
         }, intervalMs)
+
+        setIntervalID(newId)
     }
 
-    const stop = () => clearInterval(intervalID)
+    const stop = () => clearInterval(intervalId)
 
     const reset = () => {
         setCount(countStart)
-        clearInterval(intervalID)
+        clearInterval(intervalId)
     }
 
     return { count, start, stop, reset }
