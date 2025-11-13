@@ -1,61 +1,44 @@
 export const fileData = [
     {
         id: 1,
-        name: 'Electronics',
+        name: 'README.md',
+    },
+    {
+        id: 2,
+        name: 'Documents',
         children: [
             {
-                id: 2,
-                name: 'Mobile phones',
-                children: [
-                    {
-                        id: 3,
-                        name: 'iPhone',
-                    },
-                    {
-                        id: 4,
-                        name: 'Android',
-                    },
-                ],
+                id: 3,
+                name: 'Word.doc',
             },
             {
-                id: 5,
-                name: 'Laptops',
-                children: [
-                    {
-                        id: 6,
-                        name: 'MacBook',
-                    },
-                    {
-                        id: 7,
-                        name: 'Surface Pro',
-                    },
-                ],
+                id: 4,
+                name: 'Powerpoint.ppt',
             },
         ],
     },
     {
-        id: 8,
-        name: 'Books',
+        id: 5,
+        name: 'Downloads',
         children: [
             {
-                id: 9,
-                name: 'Fiction',
+                id: 6,
+                name: 'unnamed.txt',
             },
             {
-                id: 10,
-                name: 'Non-fiction',
+                id: 7,
+                name: 'Misc',
+                children: [
+                    {
+                        id: 8,
+                        name: 'foo.txt',
+                    },
+                    {
+                        id: 9,
+                        name: 'bar.txt',
+                    },
+                ],
             },
         ],
-    },
-    {
-        id: 11,
-        name: 'Toys',
     },
 ]
-
-// export const fileData = [
-//     {
-//         id: 11,
-//         name: 'Toys',
-//     },
-// ]

@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-
-function FileDirectory({ item }) {
+import './fileDirectory.css'
+function FileDirectory({ children, name }) {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <li>
-            {item.name} <span>[-]</span>
-            {item.children && <ul>{FileDirectory(item.children)}</ul>}
-        </li>
+        <>
+            {name}{' '}
+            <span className="icon" onClick={() => setIsOpen(!-isOpen)}>
+                {isOpen ? '[-]' : '[+]'}
+            </span>
+            {isOpen && children}
+        </>
     )
 }
 
