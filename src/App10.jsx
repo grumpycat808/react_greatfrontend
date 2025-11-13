@@ -1,11 +1,12 @@
 import FileExplorer from './FileExplorer'
 import { useCountdown } from './hooks/useCountdown'
 import { useState } from 'react'
+import TransferList from './TransferList2'
 
 function App10() {
     return (
         <div>
-            <FileExplorer></FileExplorer>
+            <TransferList></TransferList>
         </div>
     )
 }

@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+}
+
+li {
+    list-style: none;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
