@@ -1,103 +1,30 @@
 import React, { useState } from 'react'
-import './file-explorer.css'
-const fileData = [
-    {
-        id: 1,
-        name: 'README.md',
-    },
-    {
-        id: 2,
-        name: 'Documents',
-        children: [
-            {
-                id: 3,
-                name: 'Word.doc',
-            },
-            {
-                id: 4,
-                name: 'Powerpoint.ppt',
-            },
-        ],
-    },
-    {
-        id: 5,
-        name: 'Downloads',
-        children: [
-            {
-                id: 6,
-                name: 'unnamed.txt',
-            },
-            {
-                id: 7,
-                name: 'Misc',
-                children: [
-                    {
-                        id: 8,
-                        name: 'foo.txt',
-                    },
-                    {
-                        id: 9,
-                        name: 'bar.txt',
-                    },
-                ],
-            },
-        ],
-    },
-]
-
+import { fileData } from './fileData'
+import FileDirectory from './FileDirectory'
 function FileExplorer(props) {
-    const [active, setActive] = useState([])
+    const [message, setMessage] = useState('Hello world')
 
-    const toggleDirectory = (directoryName) => {
-        if (active.includes(directoryName)) {
-            const newList = active.filter((item) => item != directoryName)
-
-            setActive(newList)
-        } else {
-            setActive([...active, directoryName])
-        }
-    }
-    const recursiveMap = (data, parent) => {
-        return data.map((item) => {
+    const displayDirectory = (data) => {
+        return data.map((item, index) => {
             if (item.hasOwnProperty('children')) {
-                let cn = 'directory'
-                let list = ''
-                if (parent) {
-                    cn = active.includes(parent)
-                        ? 'directory active'
-                        : 'directory hidden'
-                    list = active.includes(parent) ? 'active' : 'hidden'
-                }
                 return (
-                    <>
-                        <h1
-                            className={cn}
-                            onClick={() => toggleDirectory(item.name)}
-                        >
-                            {item.name}
-                        </h1>
-                        <ul className={list}>
-                            {recursiveMap(item.children, item.name)}
-                        </ul>
-                    </>
+                    <li key={index}>
+                        {item.name} [-]{' '}
+                        {<ul>{displayDirectory(item.children)}</ul>}
+                    </li>
                 )
             } else {
-                if (parent) {
-                    return (
-                        <li
-                            className={
-                                active.includes(parent) ? 'active' : 'hidden'
-                            }
-                        >
-                            {item.name}
-                        </li>
-                    )
-                }
-                return <h1>{item.name}</h1>
+                return <li key={index}>{item.name}</li>
             }
         })
     }
-    return <div>{recursiveMap(fileData)}</div>
+    return (
+        <div>
+            <h1>{message}</h1>
+            <ul>{displayDirectory(fileData)}</ul>
+            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+        </div>
+    )
 }
 
 export default FileExplorer
