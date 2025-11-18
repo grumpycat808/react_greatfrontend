@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './transfer-list.css'
+import ListItem from './ListItem'
 const left = [
     { name: 'HTML', isChecked: false },
     { name: 'JavaScript', isChecked: false },
@@ -29,15 +30,11 @@ function TransferList(props) {
             <div className="left">
                 {leftList.map((item, index) => {
                     return (
-                        <li>
-                            <input
-                                key={index}
-                                type="checkbox"
-                                checked={item.isChecked}
-                                onChange={() => {}}
-                            ></input>
-                            {item.name}
-                        </li>
+                        <ListItem
+                            key={index}
+                            name={item.name}
+                            index={index}
+                        ></ListItem>
                     )
                 })}
             </div>
@@ -50,15 +47,11 @@ function TransferList(props) {
             <div className="right">
                 {rightList.map((item, index) => {
                     return (
-                        <li>
-                            <input
-                                key={index}
-                                type="checkbox"
-                                checked={item.isChecked}
-                                onChange={() => {}}
-                            ></input>
-                            {item.name}
-                        </li>
+                        <ListItem
+                            key={index}
+                            name={item.name}
+                            index={index}
+                        ></ListItem>
                     )
                 })}
             </div>
